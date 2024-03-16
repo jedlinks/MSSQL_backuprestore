@@ -29,7 +29,7 @@ SELECT
     'RESTORE DATABASE ['+ name + ' ] FROM DISK = ''' + @path + '' + name + '_COPY_ONLY_' + @date + '.bak'' WITH RECOVERY, REPLACE, STATS=5 ' + movecmdCTE.MoveCmd
 FROM sys.databases d
 	INNER JOIN MoveCMDCTE ON d.name = movecmdcte.databasename
-WHERE d.name not in ('tempdb') --LIKE '%DatabaseName%'
+WHERE d.name not in ('tempdb','master','model','msdb','distribution') --LIKE '%DatabaseName%'
 GO
 
 
